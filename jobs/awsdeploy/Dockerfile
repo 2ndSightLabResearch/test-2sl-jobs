@@ -25,10 +25,9 @@ WORKDIR /job
 #the contexts are passed in when the container is built
 #using the /aws/scripts/build.sh file in the
 #2sl-jobexecframeworkrepo
-COPY --from=framework job/ /job/
-COPY --from=framework resources /job/resources/
-COPY --from=framework shared /job/shared/
-COPY --from=framework job/run.sh /job/run.sh
+COPY --from=exec entrypoint/aws/run.sh job/run.sh
+COPY --from=resources resources /job/aws/resources/
+COPY --from=resources shared /job/aws/shared/
 COPY --from=job execute.sh /job/execute.sh
 RUN chmod -R 755 /job
 
